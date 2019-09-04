@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { identifierModuleUrl } from '@angular/compiler';
+import { MoviesService } from '../../services/movies.service';
 
 @Component({
   selector: 'app-detalle',
@@ -10,10 +10,18 @@ export class DetalleComponent implements OnInit {
 
   @Input() id;
 
-  constructor() { }
+  constructor(private moviesService: MoviesService) { }
 
   ngOnInit() {
-    console.log(this.id);
+    this.moviesService.getPeliculaDetalle( this.id )
+        .subscribe( resp => {
+          console.log( resp );
+        });
+        
+    this.moviesService.getActoresPelicula( this.id )
+        .subscribe( resp => {
+          console.log( resp );
+        });
   }
 
 }
