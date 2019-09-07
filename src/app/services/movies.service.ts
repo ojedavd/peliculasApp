@@ -33,6 +33,10 @@ export class MoviesService {
 
   }
 
+  buscarPeliculas( texto: string ) {
+    return this.ejecutarQuery(`/search/movie?query=${ texto }`);
+  }
+
   getFeature() {
 
     const hoy = new Date();
